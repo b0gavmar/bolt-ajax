@@ -1,0 +1,12 @@
+{
+    "bolt":[
+        {
+            "id":1,
+            "name": "tej",
+            "unit": 1,
+            "desc": "zsirtartalom",
+            "store": 20,
+            "price": "320 Ft"
+        }
+    ]
+}
