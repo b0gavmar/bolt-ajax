@@ -4,9 +4,17 @@
             "id":1,
             "name": "tej",
             "unit": 1,
-            "desc": "zsirtartalom",
+            "desc": "zsírtartalom: 2,8 %",
             "store": 20,
             "price": "320 Ft"
+        },
+        {
+            "id": 2,
+            "name": "zöld alma",
+            "unit": 4,
+            "desc": "hazai termelőtől",
+            "store": 12,
+            "price": "500 Ft"
         }
     ]
 }
