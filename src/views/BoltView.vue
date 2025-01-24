@@ -11,7 +11,7 @@ const botStore = useBotStore();
     <div v-for="p in botStore.products" :key="p.id" class="card">
       <p class="card-title"> {{ p.name }}</p>
       <div class="card-footer">
-        <button class="btn btn-outline-primary"></button>
+        <button class="btn btn-outline-primary">&#128722;</button>
       </div>
     </div>
   </div>
