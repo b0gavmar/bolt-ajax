@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useBotStore = defineStore('products', () => {
+export const useBotStore = defineStore('bot', () => {
   const products = ref(0)
-  
+  const cart = ref();
   /*const doubleCount = computed(() => count.value * 2)
   function increment() {
     count.value++
