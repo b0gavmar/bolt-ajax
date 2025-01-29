@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useBotStore = defineStore('bot', () => {
   const products = ref([])
-  const cart = ref([]);
+  const cart = ref({}); //elég tárolni a termék id-t és mennyiség párosát (key-value) (id-mennyiseg)
   /*const doubleCount = computed(() => count.value * 2)
   function increment() {
     count.value++
@@ -16,8 +16,15 @@ export const useBotStore = defineStore('bot', () => {
   }
 
   const addToCart = (id) => {
-    cart.value.push(products.value.find(p => p.id == id));
+    //cart.value.push(products.value.find(p => p.id == id));
+    if(id in cart.value === false){
+      cart.value[id] = 1; 
+    }
+    else{
+      cart.value[id] +=1;
+    }
+    
   }
 
-  return { products, loadAll, addToCart }
+  return { products, cart, loadAll, addToCart }
 })
