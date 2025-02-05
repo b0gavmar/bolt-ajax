@@ -16,8 +16,13 @@ onMounted(()=>{
 <template>
   <div class="container">
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/cart">kosar</RouterLink>
+      <div class="container">
+        <nav>
+            <RouterLink class="btn btn-outline-success m2" to="/">Termékek</RouterLink>
+            <RouterLink class="btn btn-outline-success m2" to="/new">Új termék</RouterLink>
+            <RouterLink class="btn btn-outline-success m2" to="/cart">Kosár</RouterLink>
+        </nav>
+    </div>
     </nav>
     <RouterView />
   </div>
