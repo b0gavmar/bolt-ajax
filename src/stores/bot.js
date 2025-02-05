@@ -16,15 +16,21 @@ export const useBotStore = defineStore('bot', () => {
   }
 
   const addToCart = (id) => {
-    //cart.value.push(products.value.find(p => p.id == id));
-    if(id in cart.value === false){
-      cart.value[id] = 1; 
+    let o = {'id':id,'q':1}
+    if(cart.value.length == 0){
+      cart.value.push(o); 
     }
     else{
-      cart.value[id] +=1;
+      let index = cart.value.findIndex(p=>p.id==id)
+      console.log(index)
+      cart.value[index].q +=1
     }
     
   }
 
-  return { products, cart, loadAll, addToCart }
+  const saveProduct = (p) =>{
+    console.log(p)
+  }
+
+  return { products, cart, loadAll, addToCart, saveProduct }
 })

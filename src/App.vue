@@ -3,7 +3,7 @@ import { onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useBotStore } from '@/stores/bot.js'
 //vagy from '@/stores/bot.js'
-
+//npx json-server bolt.json
 
 const botStore = useBotStore();
 
