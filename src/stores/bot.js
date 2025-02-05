@@ -30,6 +30,10 @@ export const useBotStore = defineStore('bot', () => {
 
   const saveProduct = (p) =>{
     console.log(p)
+    //let id = Math.round(Math.random*100000000000)
+    products.value.push(p)
+    axios.post("http://localhost:3000/bolt",p)
+    .then(resp => console.log(resp.statusText))
   }
 
   return { products, cart, loadAll, addToCart, saveProduct }

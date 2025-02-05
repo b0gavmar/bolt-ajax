@@ -1,7 +1,7 @@
 
 <template>
     <h1>Uj termek</h1>
-    <form class="w-50" @submit.prevent="bolt.saveProduct()">
+    <form class="w-50" @submit.prevent="bolt.saveProduct(product)">
         <input class="form-control mb-2" type="text" v-model="product.name" placeholder="Termék neve">
         <input class="form-control mb-2" type="text" v-model="product.price" placeholder="Csomagolási egység">
         <input class="form-control mb-2" type="text" v-model="product.unit" placeholder="Termék ">
@@ -16,7 +16,6 @@
     import { useBotStore } from '@/stores/bot';
     const bolt = useBotStore()
     const product = ref({
-        "id":"",
         "name": "",
         "unit": "",
         "desc": "",
