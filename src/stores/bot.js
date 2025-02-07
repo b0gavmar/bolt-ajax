@@ -1,9 +1,11 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useToast } from 'vue-toastification';
 
 export const useBotStore = defineStore('bot', () => {
   const products = ref([])
-  const cart = ref({}); //elég tárolni a termék id-t és mennyiség párosát (key-value) (id-mennyiseg)
+  const cart = ref([]); //elég tárolni a termék id-t és mennyiség párosát (key-value) (id-mennyiseg)
+  const toast = useToast();
   /*const doubleCount = computed(() => count.value * 2)
   function increment() {
     count.value++
@@ -16,19 +18,28 @@ export const useBotStore = defineStore('bot', () => {
   }
 
   const addToCart = (id) => {
-    //cart.value.push(products.value.find(p => p.id == id));
-    //if(id in cart.value === false){
-    //  cart.value[id] = 1; 
-    //}
-    //else{
-    //  cart.value[id] +=1;
-    //}
-    
     let o = {'id':id,'q':1}
-    if(cart.value.length > 0){
-      
+    if(cart.value.length == 0){
+      cart.value.push(o); 
     }
+    else{
+      let index = cart.value.findIndex(p=>p.id==id)
+      console.log(index)
+      cart.value[index].q +=1
+    }
+    
   }
 
-  return { products, cart, loadAll, addToCart }
+  const saveProduct = (p) =>{
+    console.log(p)
+    //let id = Math.round(Math.random*100000000000)
+    products.value.push(p)
+    axios.post("http://localhost:3000/bolt",p)
+    .then(resp => {
+      console.log(resp.statusText)
+      Toast("Sikeres mentés")
+    }).catch(() => toast("Hiba"));
+  }
+
+  return { products, cart, loadAll, addToCart, saveProduct }
 })
