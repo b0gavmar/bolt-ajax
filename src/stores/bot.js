@@ -17,13 +17,17 @@ export const useBotStore = defineStore('bot', () => {
 
   const addToCart = (id) => {
     //cart.value.push(products.value.find(p => p.id == id));
-    if(id in cart.value === false){
-      cart.value[id] = 1; 
-    }
-    else{
-      cart.value[id] +=1;
-    }
+    //if(id in cart.value === false){
+    //  cart.value[id] = 1; 
+    //}
+    //else{
+    //  cart.value[id] +=1;
+    //}
     
+    let o = {'id':id,'q':1}
+    if(cart.value.length > 0){
+      
+    }
   }
 
   return { products, cart, loadAll, addToCart }
