@@ -17,9 +17,9 @@
 </style>
 
 <script setup>
-import {useRoute} from 'vue-router'
+
 import { useBotStore } from '@/stores/bot';
-import {ref} from vue
+
 const botStore = useBotStore();
 
 </script>
