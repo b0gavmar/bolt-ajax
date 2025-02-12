@@ -11,7 +11,8 @@ import router from './router'
 const app = createApp(App)
 const options ={
     position:"top-right",
-    timeout:5000,
+    timeout:1500,
+    closeOnClik: true,
 }
 
 app.use(createPinia())

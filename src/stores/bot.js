@@ -36,5 +36,14 @@ export const useBotStore = defineStore('bot', () => {
     }).catch(() => toast("Hiba"));
   }
 
-  return { products, cart, loadAll, addToCart, saveProduct }
+  const emptyCart = () => {
+    //forin és forof is van
+    for (const key in cart.value) {
+      products.value.find((p)=>p.id == key).store += cart.value[key]
+    }
+    cart.value = {}
+    toast("Sikeres ürítés")
+  }
+
+  return { products, cart, loadAll, addToCart, saveProduct, emptyCart }
 })
