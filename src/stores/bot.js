@@ -19,14 +19,9 @@ export const useBotStore = defineStore('bot', () => {
 
   const addToCart = (id) => {
     let o = {'id':id,'q':1}
-    if(cart.value.length == 0){
-      cart.value.push(o); 
-    }
-    else{
-      let index = cart.value.findIndex(p=>p.id==id)
-      console.log(index)
-      cart.value[index].q +=1
-    }
+    cart.value[id] = cart.value[id] ? cart.value[id]+1 :1
+    toast("kosárhoz adva")
+    products.value.find((products) => products.id == id).store--
     
   }
 
