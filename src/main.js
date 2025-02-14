@@ -15,12 +15,6 @@ const options = {
     closeOnClik: true,
 }
 
-const options = {
-    position: "top-right",
-    timeout: 1500,
-    closeOnClick: true
-};
-
 app.use(createPinia())
 app.use(router)
 app.use(Toast, options)
