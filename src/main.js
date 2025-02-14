@@ -9,6 +9,11 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
+const options = {
+    position: "top-right",
+    timeout: 1500,
+    closeOnClik: true,
+}
 
 const options = {
     position: "top-right",
