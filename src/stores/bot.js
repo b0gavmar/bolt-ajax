@@ -7,6 +7,7 @@ export const useBotStore = defineStore('bot', () => {
   const products = ref([])
   const cart = ref({})  //Elég tárolni a termék id és mennyiség párosát, key-value
   const toast = useToast()
+  const total = ref(0)
   
   const loadAll = () => {
     fetch("http://localhost:3000/bolt")
@@ -41,5 +42,13 @@ export const useBotStore = defineStore('bot', () => {
     toast.error("Kosár ürítve!")
   }
 
-  return { products , cart, loadAll, addToCart, saveProduct, emptyCart}
+  const countTotal = () =>{
+    let t = 0
+    for(const key in cart.value){
+      t += parseFloat(products.value.find(p => p.id==key).price) * cart.value[key]
+    }
+    return t
+  }
+
+  return { products , cart, total, loadAll, addToCart, saveProduct, emptyCart, countTotal}
 })
