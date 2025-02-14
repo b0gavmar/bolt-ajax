@@ -1,18 +1,18 @@
 <template>
   <h1 class="text-center">Kosár</h1>
-  <p v-if="Object.entries(botStore.cart).length < 1">üres</p>
-  <table v-else>
-    <tr v-for="p in botStore.cart"> 
-      <td> {{ p.Id }} </td>
-    </tr>
-  </table>
+    <p v-if="Object.entries(botStore.cart).length < 1"> Üres a kosár!</p>
+    <div v-else>
+      <table >
+        <tr v-for="p in botStore.cart">
+          <td>{{ p.key }}</td>
+        </tr>
+      </table>
+      <button @click="botStore.emptyCart()"class="btn btn-outline-danger">Kosár ürítése</button>
+    </div>
 </template>
 
-<style scoped>
-
-</style>
-
 <script setup>
-import { useBotStore } from '@/stores/bot';
-const botStore = useBotStore();
+  import {useBotStore} from '@/stores/bot.js'
+  const botStore = useBotStore()
+
 </script>

@@ -1,45 +1,45 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useToast } from 'vue-toastification';
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
 
 export const useBotStore = defineStore('bot', () => {
   const products = ref([])
-  const cart = ref([]); //elég tárolni a termék id-t és mennyiség párosát (key-value) (id-mennyiseg)
-  const toast = useToast();
-  /*const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
-  }*/
-
+  const cart = ref({})  //Elég tárolni a termék id és mennyiség párosát, key-value
+  const toast = useToast()
+  
   const loadAll = () => {
     fetch("http://localhost:3000/bolt")
     .then(resp => resp.json())
     .then(data => products.value = data)
   }
 
-  const addToCart = (id) => {
-    let o = {'id':id,'q':1}
-    if(cart.value.length == 0){
-      cart.value.push(o); 
-    }
-    else{
-      let index = cart.value.findIndex(p=>p.id==id)
-      console.log(index)
-      cart.value[index].q +=1
-    }
-    
+  const addToCart = (id) =>{    
+    //let o = {'id' : id, 'q' : 1}    
+    cart.value[id] = cart.value[id] ? cart.value[id] + 1 : 1
+    toast("Kosárhoz adva")
+    products.value.find((p) => p.id == id).store--   
   }
 
-  const saveProduct = (p) =>{
+  const saveProduct = (p) => {
     console.log(p)
-    //let id = Math.round(Math.random*100000000000)
+    //let id = Math.round(Math.random() * 1000000000)
     products.value.push(p)
     axios.post("http://localhost:3000/bolt",p)
     .then(resp => {
       console.log(resp.statusText)
-      Toast("Sikeres mentés")
-    }).catch(() => toast("Hiba"));
+      toast("Sikeres mentés");
+    })
+    .catch(() => toast.error("Hiba"))
   }
 
-  return { products, cart, loadAll, addToCart, saveProduct }
+  const emptyCart = () =>{
+    for (const key in cart.value) {
+      products.value.find((p) => p.id == key).store += cart.value[key]
+    }
+    cart.value = {}
+    toast.error("Kosár ürítve!")
+  }
+
+  return { products , cart, loadAll, addToCart, saveProduct, emptyCart}
 })

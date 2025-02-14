@@ -1,31 +1,23 @@
 <script setup>
-import { onMounted } from 'vue'
+import {onMounted} from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useBotStore } from '@/stores/bot.js'
-//vagy from '@/stores/bot.js'
-//npx json-server bolt.json
 
-const botStore = useBotStore();
+const botStore = useBotStore()
 
-onMounted(()=>{
-  botStore.loadAll();
-});
+onMounted(() =>{
+  botStore.loadAll()
+})
 
 </script>
 
 <template>
-  <div class="container">
-    <nav>
       <div class="container">
-        <nav>
-            <RouterLink class="btn btn-outline-success m2" to="/">Termékek</RouterLink>
-            <RouterLink class="btn btn-outline-success m2" to="/new">Új termék</RouterLink>
-            <RouterLink class="btn btn-outline-success m2" to="/cart">Kosár</RouterLink>
+        <nav class="text-center">
+          <RouterLink class="btn btn-outline-success m-2" to="/">Termékek</RouterLink>
+          <RouterLink class="btn btn-outline-success m-2" to="/new">Új termék</RouterLink>
+          <RouterLink  class="btn btn-outline-success m-2" to="/cart">Kosár</RouterLink>
         </nav>
-    </div>
-    </nav>
-    <RouterView />
-  </div>
+          <RouterView />
+      </div>
 </template>
-
-<style scoped></style>
